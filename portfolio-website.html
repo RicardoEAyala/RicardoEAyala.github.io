@@ -1,0 +1,437 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptual Architecture Portfolio</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            padding: 40px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 300;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #888;
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f2f2f2;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+        
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Portfolio sections */
+        .section-title {
+            text-align: center;
+            padding: 80px 0 40px;
+            font-weight: 300;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
+        
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 5% 80px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            background-color: #eee;
+            cursor: pointer;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover .item-overlay {
+            transform: translateY(0);
+        }
+        
+        .item-overlay h3 {
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+        
+        /* About section */
+        .about {
+            background-color: white;
+            padding: 80px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h2 {
+            font-weight: 300;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        /* Contact section */
+        .contact {
+            padding: 80px 5%;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-weight: 300;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 5%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 20px 5%;
+            }
+            
+            nav {
+                margin-top: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 15px;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .about {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Your Name</div>
+        <nav>
+            <ul>
+                <li><a href="#vases">Vases</a></li>
+                <li><a href="#drawings">Drawings</a></li>
+                <li><a href="#photography">Photography</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <img src="/api/placeholder/1200/800" alt="Featured Work" class="hero-image">
+        <div class="hero-text">
+            <h1>Conceptual Architecture & Design</h1>
+            <p>Exploring form, space, and light through different mediums</p>
+        </div>
+    </section>
+    
+    <h2 class="section-title" id="vases">Vases</h2>
+    <div class="portfolio-container">
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/400" alt="Vase Design 1">
+            <div class="item-overlay">
+                <h3>Geometric Series</h3>
+                <p>Concrete & brass, 2024</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/401" alt="Vase Design 2">
+            <div class="item-overlay">
+                <h3>Fluid Form</h3>
+                <p>Ceramic, 2023</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/402" alt="Vase Design 3">
+            <div class="item-overlay">
+                <h3>Negative Space</h3>
+                <p>Glass & metal, 2024</p>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="section-title" id="drawings">Drawings</h2>
+    <div class="portfolio-container">
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/403" alt="Drawing 1">
+            <div class="item-overlay">
+                <h3>Urban Fragments</h3>
+                <p>Charcoal on paper, 2023</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/404" alt="Drawing 2">
+            <div class="item-overlay">
+                <h3>Spatial Study</h3>
+                <p>Ink on vellum, 2024</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/405" alt="Drawing 3">
+            <div class="item-overlay">
+                <h3>Light & Shadow</h3>
+                <p>Mixed media, 2023</p>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="section-title" id="photography">Photography</h2>
+    <div class="portfolio-container">
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/406" alt="Photography 1">
+            <div class="item-overlay">
+                <h3>Material Studies</h3>
+                <p>Digital photography, 2024</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/407" alt="Photography 2">
+            <div class="item-overlay">
+                <h3>Architectural Details</h3>
+                <p>Film photography, 2023</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="/api/placeholder/400/408" alt="Photography 3">
+            <div class="item-overlay">
+                <h3>Urban Perspectives</h3>
+                <p>Digital photography, 2024</p>
+            </div>
+        </div>
+    </div>
+    
+    <section class="about" id="about">
+        <div class="about-image">
+            <img src="/api/placeholder/600/800" alt="About Me">
+        </div>
+        <div class="about-text">
+            <h2>About Me</h2>
+            <p>I am a conceptual architect and designer exploring the relationships between form, space, and human experience through various mediums including vase design, drawing, and photography.</p>
+            <p>My work examines the boundaries between functional objects and artistic expression, seeking to create pieces that challenge conventional perceptions of space and materiality.</p>
+            <p>With a background in traditional architecture and fine arts, I bring a multidisciplinary approach to each project, drawing inspiration from urban environments, natural forms, and the interplay of light and shadow.</p>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5"></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Behance</a>
+        </div>
+    </footer>
+</body>
+</html>
